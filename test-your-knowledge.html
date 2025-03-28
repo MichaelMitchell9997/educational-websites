@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Logic Gates - Understanding the Basics</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Albert+Sans&amp;display=swap">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        /* internal css used only for this specific page*/
+        .game-container {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .item {
+            width: 150px;
+            padding: 10px;
+            text-align: center;
+            background-color: #f8f9fa;
+            border: 1px solid #ccc;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        .dropzone {
+            width: 175px;
+            height: 150px;
+            text-align: center;
+            border: 2px dashed #007bff;
+        }
+		.congratulations-message {
+            text-align: center;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md bg-primary-subtle py-3">
+            <div class="container">
+                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-4">
+                    <span class="visually-hidden">Toggle navigation</span>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse flex-grow-0 order-md-first" id="navcol-4">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="logic-Gates.html">Logic Gates</a></li>
+                        <li class="nav-item"><a class="nav-link" href="videos.html">Videos</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="test-your-knowledge.html">Test your knowledge</a></li>
+                    </ul>
+                </div>
+                <div class="d-none d-md-block"></div>
+                <input type="search" placeholder="Not implemented" name="Search_bar"> <!--Ability to search not implemented, just a placeholder to get an idea of the size required in nav bar-->
+                <div class="d-none d-md-block"></div>
+            </div>
+        </nav>
+    </header>
+   <main class="bg-white container">
+    <h1 class="text-center">Match the Logic Gates</h1>
+	 <p class="lead">
+            Place the logic gate image in the correct box.
+        </p>
+    <div class="game-container">
+        <div class="item" id="and-gate" draggable="true">
+            <img src="assets/img/and-gate.png" alt="AND Gate">
+        </div>
+        <div class="item" id="or-gate" draggable="true">
+            <img src="assets/img/or-gate.png" alt="OR Gate">
+        </div>
+        <div class="item" id="not-gate" draggable="true">
+            <img src="assets/img/not-gate.png" alt="NOT Gate">
+        </div>
+    </div>
+    <div class="game-container">
+        <div class="dropzone" id="drop-and-gate">AND Gate</div>
+        <div class="dropzone" id="drop-or-gate">OR Gate</div>
+        <div class="dropzone" id="drop-not-gate">NOT Gate</div>
+    </div>
+    </main>
+    <footer class="text-center">
+        <div class="container text-muted bg-primary-subtle py-4 py-lg-5">
+            <p class="mb-0">Author Michael Mitchell 2831597 © 2023 Stirling University</p>
+        </div>
+    </footer>
+<script> //script is used for the drag and drop by using action listiners and checking if the correct image is in the correct box, once all 3 images are in the correct location a congratulations message is displayed
+    const items = document.querySelectorAll('.item');
+    const dropzones = document.querySelectorAll('.dropzone');
+    let correctItemsPlaced = 0;
+
+    items.forEach(item => {
+        item.addEventListener('dragstart', (e) => {
+            e.dataTransfer.setData('text/plain', item.id);
+        });
+    });
+
+    dropzones.forEach(dropzone => {
+        dropzone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+        });
+
+        dropzone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const itemId = e.dataTransfer.getData('text/plain');
+            const draggedItem = document.getElementById(itemId);
+
+            if (draggedItem && dropzone.id === 'drop-' + itemId) {
+                // Move the item to the correct drop zone
+                dropzone.appendChild(draggedItem);
+                correctItemsPlaced++;
+
+                // Check if all correct items are placed
+                if (correctItemsPlaced === items.length) {
+                    showCongratulations();
+                }
+            }
+        });
+    });
+
+            function showCongratulations() {
+       
+            const messageContainer = document.createElement('div');
+            messageContainer.textContent = 'Congratulations! You got them all correct!';
+            messageContainer.classList.add('congratulations-message');
+            document.querySelector('main').appendChild(messageContainer);
+        }
+</script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

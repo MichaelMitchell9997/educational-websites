@@ -1,0 +1,83 @@
+/* Custom CSS to enhance the page */
+body {
+    font-family: 'Albert Sans', sans-serif;
+	background-color: #2b2b2b !important;
+}
+
+header {
+    background-color: #2b2b2b;
+    color: #ffffff;
+}
+
+nav.navbar {
+	position: fixed;
+    top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1000;
+    border-bottom: 3px solid #007bff;
+}
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75vh; /* Adjust the height as needed */
+}
+nav.navbar .nav-link.active {
+	font-weight:bold;
+}
+
+nav.navbar a.nav-link {
+    color: #00000;
+}
+
+nav.navbar a.nav-link:hover {
+    color: #007bff;
+}
+
+main.container {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #2b2b2b;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #007bff;
+}
+
+section h2 {
+    color: #333333;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+}
+
+table.table {
+    background-color: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+}
+
+table.table th {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+table.table th,
+table.table td {
+    text-align: center;
+}
+
+footer {
+    background-color: #2b2b2b;
+    color: #ffffff;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    main.container {
+        margin-top: 10px;
+    }
+}
